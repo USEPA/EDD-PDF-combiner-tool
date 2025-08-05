@@ -289,6 +289,10 @@ namespace Automatic_PDF_Combiner
             // 
             // toolTip1
             // 
+            toolTip1.AutoPopDelay = 1200000;
+            toolTip1.InitialDelay = 500;
+            toolTip1.ReshowDelay = 100;
+            toolTip1.ShowAlways = true;
             toolTip1.UseAnimation = false;
             // 
             // toolTip
@@ -308,6 +312,13 @@ namespace Automatic_PDF_Combiner
             toolTipLbl.Size = new Size(111, 15);
             toolTipLbl.TabIndex = 18;
             toolTipLbl.Text = "How to use the tool";
+            // 
+            // toolTip2
+            // 
+            toolTip2.AutoPopDelay = 1200000;
+            toolTip2.InitialDelay = 500;
+            toolTip2.ReshowDelay = 100;
+            toolTip2.ShowAlways = true;
             // 
             // Form1
             // 

@@ -20,15 +20,15 @@ namespace Automatic_PDF_Combiner
         {
             InitializeComponent();
             string howToUseTheToolMessage = "1. Select folder contain PDFs.\n" +
-                "2. Choose Combine Option:\n" +
-                "\ta. Single PDF: Combine PDs into one file. \n " +
-                "\tb. Max of 100 MB: Combine into multiple files (parts), each not exceeding the 100 MB size limit.\n" +
-                "\t    Parts are saved in a new folder within the selected location.\n" +
-                "\t    This option is useful for sending PDFs via email.\n" +
+                "2. Select Combine Option:\n" +
+                "\ta. Single PDF: Combine PDfs into one file. \n " +
+                "\tb. Max of 100 MB: \n" +
+                "\t    - Combine into multiple files (parts), each not exceeding the 100 MB size limit.\n" +
+                "\t    - Parts are saved in a new folder within the selected location.\n" +
+                "\t    - This option is useful for sending PDFs via email.\n" +
                 "3. Click Strat Combining.\n" +
                 "4. View progress and final status in the app.";
 
-            // Example of adding a tooltip in a Windows Forms application
             toolTip1.SetToolTip(toolTip, howToUseTheToolMessage);
             toolTip2.SetToolTip(toolTipLbl, howToUseTheToolMessage);
         }
@@ -295,7 +295,7 @@ namespace Automatic_PDF_Combiner
             switch (selectedOption)
             {
                 case "Single PDF":
-                    combineOptionInfoLbl.Text = "Combine all PDFs into one file PDF. You'll choose the name and save location after combing is completed.";
+                    combineOptionInfoLbl.Text = "Combine all PDFs into one PDF file. You'll choose the name and save location after combing is completed.";
 
                     break;
                 case "Max of 100 MB":
