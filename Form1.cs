@@ -2,9 +2,8 @@
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
-
 /* ---------------------------- 
-Created by: Dana Jamous 
+Created by: Dana Jamous 7/22/2025
 Operations & Information Analysis Branch (OIAB)
 eDiscovery Division (EDD)
 Office of Records, Administrative Systems & eDiscovery (ORASE)
@@ -20,6 +19,18 @@ namespace Automatic_PDF_Combiner
         public Form1()
         {
             InitializeComponent();
+            string howToUseTheToolMessage = "1. Select folder contain PDFs.\n" +
+                "2. Choose Combine Option:\n" +
+                "\ta. Single PDF: Combine PDs into one file. \n " +
+                "\tb. Max of 100 MB: Combine into multiple files (parts), each not exceeding the 100 MB size limit.\n" +
+                "\t    Parts are saved in a new folder within the selected location.\n" +
+                "\t    This option is useful for sending PDFs via email.\n" +
+                "3. Click Strat Combining.\n" +
+                "4. View progress and final status in the app.";
+
+            // Example of adding a tooltip in a Windows Forms application
+            toolTip1.SetToolTip(toolTip, howToUseTheToolMessage);
+            toolTip2.SetToolTip(toolTipLbl, howToUseTheToolMessage);
         }
 
         // Handles the browse button click to select a folder containing PDF files
@@ -75,7 +86,9 @@ namespace Automatic_PDF_Combiner
                     PdfDocument output = CombineIntoSinglePdf(pdfFiles);
                     string outputPath = ShowSaveFileDialog();
                     if (outputPath == null) return;
+                    //save it on the disk 
                     output.Save(outputPath);
+                    //release the RAM 
                     output.Close();
                     // Calculate the size of the saved PDF file
                     long fileSizeBytes = new FileInfo(outputPath).Length;
@@ -154,6 +167,7 @@ namespace Automatic_PDF_Combiner
         {
             UpdateStatus("Combining into a single PDF...", Color.Blue);
             enableControls(false);
+            //All combined pahes are kept in memory untill output.save() is called.
             PdfDocument output = new PdfDocument();
             int count = 0;
             lblProgressCount.Visible = true;
@@ -187,6 +201,7 @@ namespace Automatic_PDF_Combiner
             long currentSizeEstimate = 0;
             int part = 1;
             int count = 0;
+            //All combined pahes are kept in memory untill output.save() is called.
             PdfDocument output = new PdfDocument();
             String exceed100ErrorMsg = "";
             fileNameLbl.Visible = true;
@@ -195,9 +210,9 @@ namespace Automatic_PDF_Combiner
             string combinedFolder = Path.Combine(folderPath, $"Combined_Parts_{DateTime.Now:dd-MM-yyyy}  {DateTime.Now:HH.mm.ss}");
             Directory.CreateDirectory(combinedFolder);
 
-            UpdateStatus($"Combining with size limit of {sizeLimitMB} MB...{Environment.NewLine}", Color.Blue);
+            UpdateStatus($"Combining with size limit of {sizeLimitMB} MB...", Color.Blue);
 
-            // First loop: Check if any file exceeds the limit if yes stop combining ad show error message
+            // Check if any file exceeds the limit if yes stop combining ad show error message
             foreach (string file in pdfFiles)
             {
                 long fileSize = new FileInfo(file).Length;
@@ -219,7 +234,7 @@ namespace Automatic_PDF_Combiner
                 }
             }
 
-            // Second loop: Combine and save in parts
+            //Combine and save in parts
             foreach (string file in pdfFiles)
             {
                 long fileSize = new FileInfo(file).Length;
@@ -227,7 +242,9 @@ namespace Automatic_PDF_Combiner
                 if (currentSizeEstimate + fileSize > maxSizeBytes && output.PageCount > 0)
                 {
                     string partFile = Path.Combine(combinedFolder, $"Combined_Part{part}.pdf");
+                    //save it on the disk 
                     output.Save(partFile);
+                    //release the RAM 
                     output.Close();
                     UpdateStatus($"•  Part ({part}) Saved: {partFile} {Environment.NewLine}•  Size: {currentSizeEstimate / MB} MB {Environment.NewLine}{Environment.NewLine} Continue combining...", Color.Blue);
                     Log($"Saved part {part}: {partFile} (Estimated size: {currentSizeEstimate / MB} MB)");
@@ -253,7 +270,7 @@ namespace Automatic_PDF_Combiner
                 fileNameLbl.Text = "PDF Name: " + Path.GetFileName(file);
                 Application.DoEvents();
             }
-
+            //save the last part 
             if (output.PageCount > 0)
             {
                 string partFile = Path.Combine(combinedFolder, $"Combined_Part{part}.pdf");
@@ -272,8 +289,8 @@ namespace Automatic_PDF_Combiner
 
             combineOptionInfoLbl.Visible = true;
             resetControls();
-            // Get the selected item text
             string selectedOption = combineOptionComboBox.SelectedItem.ToString();
+
             // Perform actions based on the selected item
             switch (selectedOption)
             {
@@ -282,14 +299,14 @@ namespace Automatic_PDF_Combiner
 
                     break;
                 case "Max of 100 MB":
-                    combineOptionInfoLbl.Text = $"Combine PDFs into parts(max 100MB each). Parts are saved in new folder inside the sleced location.";
+                    combineOptionInfoLbl.Text = $"Combine into multiple files (parts), each not exceeding the 100 MB size limit. \nParts are saved in a new folder within the selected folder.\nThis option is useful for sending combined PDFs via email.";
                     break;
                 default:
 
                     break;
             }
         }
-        
+
         // Enables or disables UI controls based on the provided boolean parameter
         private void enableControls(bool enable)
         {
@@ -298,7 +315,7 @@ namespace Automatic_PDF_Combiner
             txtFolderPath.Enabled = enable;
             combineOptionComboBox.Enabled = enable;
         }
-        
+
         // Resets various UI controls to their default state
         private void resetControls()
         {
@@ -330,6 +347,11 @@ namespace Automatic_PDF_Combiner
             {
                 Log("failed to delete partial files after stopping combing " + ex.Message);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -51,10 +51,15 @@ namespace Automatic_PDF_Combiner
             fileNameLbl = new Label();
             statusTextBox = new TextBox();
             label4 = new Label();
+            toolTip1 = new ToolTip(components);
+            toolTip = new PictureBox();
+            toolTipLbl = new Label();
+            toolTip2 = new ToolTip(components);
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)toolTip).BeginInit();
             SuspendLayout();
             // 
             // btnBrowse
@@ -97,7 +102,7 @@ namespace Automatic_PDF_Combiner
             btnCombine.FlatStyle = FlatStyle.Flat;
             btnCombine.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCombine.ForeColor = SystemColors.ActiveCaptionText;
-            btnCombine.Location = new Point(125, 165);
+            btnCombine.Location = new Point(125, 184);
             btnCombine.Margin = new Padding(4, 3, 4, 3);
             btnCombine.Name = "btnCombine";
             btnCombine.Size = new Size(550, 35);
@@ -125,7 +130,7 @@ namespace Automatic_PDF_Combiner
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
-            groupBox1.Size = new Size(760, 211);
+            groupBox1.Size = new Size(760, 225);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Combine Settings";
@@ -282,12 +287,36 @@ namespace Automatic_PDF_Combiner
             label4.TabIndex = 16;
             label4.Text = "Progress:";
             // 
+            // toolTip1
+            // 
+            toolTip1.UseAnimation = false;
+            // 
+            // toolTip
+            // 
+            toolTip.Image = (Image)resources.GetObject("toolTip.Image");
+            toolTip.Location = new Point(12, 44);
+            toolTip.Name = "toolTip";
+            toolTip.Size = new Size(24, 25);
+            toolTip.TabIndex = 17;
+            toolTip.TabStop = false;
+            // 
+            // toolTipLbl
+            // 
+            toolTipLbl.AutoSize = true;
+            toolTipLbl.Location = new Point(36, 49);
+            toolTipLbl.Name = "toolTipLbl";
+            toolTipLbl.Size = new Size(111, 15);
+            toolTipLbl.TabIndex = 18;
+            toolTipLbl.Text = "How to use the tool";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HighlightText;
             ClientSize = new Size(788, 605);
+            Controls.Add(toolTipLbl);
+            Controls.Add(toolTip);
             Controls.Add(groupBox2);
             Controls.Add(pictureBox2);
             Controls.Add(label2);
@@ -299,12 +328,14 @@ namespace Automatic_PDF_Combiner
             SizeGripStyle = SizeGripStyle.Show;
             Text = "Auto PDFs Combiner";
             TransparencyKey = SystemColors.ActiveBorder;
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)toolTip).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -331,6 +362,10 @@ namespace Automatic_PDF_Combiner
         private System.Windows.Forms.TextBox statusTextBox;
         private System.Windows.Forms.Label combineOptionInfoLbl;
         private System.Windows.Forms.Label fileNameLbl;
+        private ToolTip toolTip1;
+        private PictureBox toolTip;
+        private Label toolTipLbl;
+        private ToolTip toolTip2;
     }
 }
 
