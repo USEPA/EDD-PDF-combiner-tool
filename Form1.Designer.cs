@@ -205,7 +205,7 @@ namespace Automatic_PDF_Combiner
             label2.BackColor = Color.Transparent;
             label2.FlatStyle = FlatStyle.System;
             label2.ForeColor = SystemColors.ControlDark;
-            label2.Location = new Point(19, 581);
+            label2.Location = new Point(19, 579);
             label2.Margin = new Padding(0, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(256, 15);
