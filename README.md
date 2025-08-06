@@ -1,18 +1,20 @@
-This tool is combines multiple PDF files into a single document effortlessly, saving time and simplifying document management.
+**Auto PDF Combiner**
+This tool combines multiple PDF files into a single or multiple PDFs effortlessly, saving time and simplifying document management.
 
 **Features**
 - Single PDF Combining: Combine  multiple PDF files into a single PDF.
-- Size-Limited Parts: Create multiple PDF files with a maximum size limit, ideal for sending documents via email or managing storage constraints.
+- Size-Limited Parts: Combine PDFs into multiple PDF files with a 100MB size limit, ideal for sending PDF via email or managing storage constraints.
 - Cancellation Option: Cancel the combining process at any time.
 - Real-Time Status Updates: real-time progress updates and detailed logs of all combining activities.
 
 **Usage Workflow**
 1.	Select folder contain PDFs
 2.	Choose Combine Option:
-a.	Single PDF: Combine PDs into one file.
-b.	Max of 100 MB: Combine into multiple files (parts), each not exceeding the 100 MB size limit. Parts are saved in a new folder within the selected location. This option is useful for sending PDFs via email.
+    a.	Single PDF: Combine PDs into one file.
+    b.	Max of 100 MB: Combine into multiple files (parts), each not exceeding the 100 MB size limit. Parts are saved in a new folder within the selected location. This option is useful for sending PDFs via email.
 3.	Click Strat Combining.
-4.	View progress and final status in the app. 
+4.	Cancel the combining at any time.
+5.	View progress and final status in the app. 
 
 **Build and Deployment**
 -	Built using C# (.Net WinForms)
@@ -20,11 +22,11 @@ b.	Max of 100 MB: Combine into multiple files (parts), each not exceeding the 10
 -	Target OS version: 10.0.17763.0 (Can be changed).
 -	Supported OS version: The minimum OS version that the project will run on is 7.0 (Can be changed).
 -	Published as self-contained Single EXE. All dependencies are contained in the EXE. dependencies used: 
-    o PDFSharp 
+        o PDFSharp 
 -	No updates are required. 
 -	Target Runtime: win-x64 (Can be changed). 
 -	Changes to the code requires publishing new EXE. 
--	EXE size: 148 MB.
+-	Final EXE size: 148 MB.
 
 **CPU**
 -	Light usage, single-threaded.
