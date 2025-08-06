@@ -38,6 +38,7 @@ namespace Automatic_PDF_Combiner
             btnCombine = new Button();
             notifyIcon1 = new NotifyIcon(components);
             groupBox1 = new GroupBox();
+            cancelBtn = new Button();
             combineOptionInfoLbl = new Label();
             label5 = new Label();
             combineOptionComboBox = new ComboBox();
@@ -51,10 +52,10 @@ namespace Automatic_PDF_Combiner
             fileNameLbl = new Label();
             statusTextBox = new TextBox();
             label4 = new Label();
-            toolTip1 = new ToolTip(components);
+            helpIconToolTip = new ToolTip(components);
             toolTip = new PictureBox();
             toolTipLbl = new Label();
-            toolTip2 = new ToolTip(components);
+            helpTextToolTip = new ToolTip(components);
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -74,6 +75,7 @@ namespace Automatic_PDF_Combiner
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(37, 33);
             btnBrowse.TabIndex = 0;
+            helpTextToolTip.SetToolTip(btnBrowse, "Browse for a folder containing PDFs");
             btnBrowse.UseVisualStyleBackColor = false;
             btnBrowse.Click += btnBrowse_Click;
             // 
@@ -119,6 +121,7 @@ namespace Automatic_PDF_Combiner
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ControlLightLight;
+            groupBox1.Controls.Add(cancelBtn);
             groupBox1.Controls.Add(combineOptionInfoLbl);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(combineOptionComboBox);
@@ -134,6 +137,21 @@ namespace Automatic_PDF_Combiner
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Combine Settings";
+            // 
+            // cancelBtn
+            // 
+            cancelBtn.BackColor = Color.Transparent;
+            cancelBtn.Enabled = false;
+            cancelBtn.FlatAppearance.BorderSize = 0;
+            cancelBtn.FlatStyle = FlatStyle.Flat;
+            cancelBtn.Image = (Image)resources.GetObject("cancelBtn.Image");
+            cancelBtn.Location = new Point(683, 184);
+            cancelBtn.Name = "cancelBtn";
+            cancelBtn.Size = new Size(35, 35);
+            cancelBtn.TabIndex = 7;
+            helpTextToolTip.SetToolTip(cancelBtn, "Cancel the PDF combining process");
+            cancelBtn.UseVisualStyleBackColor = false;
+            cancelBtn.Click += cancelBtn_Click;
             // 
             // combineOptionInfoLbl
             // 
@@ -287,13 +305,14 @@ namespace Automatic_PDF_Combiner
             label4.TabIndex = 16;
             label4.Text = "Progress:";
             // 
-            // toolTip1
+            // helpIconToolTip
             // 
-            toolTip1.AutoPopDelay = 1200000;
-            toolTip1.InitialDelay = 500;
-            toolTip1.ReshowDelay = 100;
-            toolTip1.ShowAlways = true;
-            toolTip1.UseAnimation = false;
+            helpIconToolTip.AutoPopDelay = 1200000;
+            helpIconToolTip.BackColor = SystemColors.InfoText;
+            helpIconToolTip.InitialDelay = 500;
+            helpIconToolTip.ReshowDelay = 100;
+            helpIconToolTip.ShowAlways = true;
+            helpIconToolTip.UseAnimation = false;
             // 
             // toolTip
             // 
@@ -309,16 +328,16 @@ namespace Automatic_PDF_Combiner
             toolTipLbl.AutoSize = true;
             toolTipLbl.Location = new Point(36, 49);
             toolTipLbl.Name = "toolTipLbl";
-            toolTipLbl.Size = new Size(111, 15);
+            toolTipLbl.Size = new Size(86, 15);
             toolTipLbl.TabIndex = 18;
-            toolTipLbl.Text = "How to use the tool";
+            toolTipLbl.Text = "About this tool";
             // 
-            // toolTip2
+            // helpTextToolTip
             // 
-            toolTip2.AutoPopDelay = 1200000;
-            toolTip2.InitialDelay = 500;
-            toolTip2.ReshowDelay = 100;
-            toolTip2.ShowAlways = true;
+            helpTextToolTip.AutoPopDelay = 1200000;
+            helpTextToolTip.InitialDelay = 500;
+            helpTextToolTip.ReshowDelay = 100;
+            helpTextToolTip.ShowAlways = true;
             // 
             // Form1
             // 
@@ -339,7 +358,6 @@ namespace Automatic_PDF_Combiner
             SizeGripStyle = SizeGripStyle.Show;
             Text = "Auto PDFs Combiner";
             TransparencyKey = SystemColors.ActiveBorder;
-            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -373,10 +391,11 @@ namespace Automatic_PDF_Combiner
         private System.Windows.Forms.TextBox statusTextBox;
         private System.Windows.Forms.Label combineOptionInfoLbl;
         private System.Windows.Forms.Label fileNameLbl;
-        private ToolTip toolTip1;
+        private ToolTip helpIconToolTip;
         private PictureBox toolTip;
         private Label toolTipLbl;
-        private ToolTip toolTip2;
+        private ToolTip helpTextToolTip;
+        private Button cancelBtn;
     }
 }
 

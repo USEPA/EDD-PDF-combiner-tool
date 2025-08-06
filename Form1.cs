@@ -1,6 +1,7 @@
 ﻿
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using System.Drawing.Text;
 
 /* ---------------------------- 
 Created by: Dana Jamous 7/22/2025
@@ -15,10 +16,14 @@ namespace Automatic_PDF_Combiner
     public partial class Form1 : Form
     {
         private string logFilePath = "log.txt";
+        // Global vars
+        bool cancelRequested = false;
+        string currentOutputFolder = "";
 
         public Form1()
         {
             InitializeComponent();
+
             string howToUseTheToolMessage = "1. Select folder contain PDFs.\n" +
                 "2. Select Combine Option:\n" +
                 "\ta. Single PDF: Combine PDfs into one file. \n " +
@@ -26,11 +31,11 @@ namespace Automatic_PDF_Combiner
                 "\t    - Combine into multiple files (parts), each not exceeding the 100 MB size limit.\n" +
                 "\t    - Parts are saved in a new folder within the selected location.\n" +
                 "\t    - This option is useful for sending PDFs via email.\n" +
-                "3. Click Strat Combining.\n" +
+                "3. Click Start Combining.\n" +
                 "4. View progress and final status in the app.";
 
-            toolTip1.SetToolTip(toolTip, howToUseTheToolMessage);
-            toolTip2.SetToolTip(toolTipLbl, howToUseTheToolMessage);
+            helpIconToolTip.SetToolTip(toolTip, howToUseTheToolMessage);
+            helpTextToolTip.SetToolTip(toolTipLbl, howToUseTheToolMessage);
         }
 
         // Handles the browse button click to select a folder containing PDF files
@@ -52,7 +57,8 @@ namespace Automatic_PDF_Combiner
         // Handles the combine button click to combine PDF files based on selected option
         private void btnCombine_Click(object sender, EventArgs e)
         {
-            const int MB = 1024 * 1024;
+            //reset cancel requested
+            cancelRequested = false;
             string folderPath = txtFolderPath.Text;
             if (!Directory.Exists(folderPath))
             {
@@ -84,17 +90,6 @@ namespace Automatic_PDF_Combiner
                 if (option.Trim().Equals("Single PDF", StringComparison.OrdinalIgnoreCase))
                 {
                     PdfDocument output = CombineIntoSinglePdf(pdfFiles);
-                    string outputPath = ShowSaveFileDialog();
-                    if (outputPath == null) return;
-                    //save it on the disk 
-                    output.Save(outputPath);
-                    //release the RAM 
-                    output.Close();
-                    // Calculate the size of the saved PDF file
-                    long fileSizeBytes = new FileInfo(outputPath).Length;
-                    double fileSizeMB = (double)fileSizeBytes / MB;
-                    UpdateStatus($"•  Combined PDF saved at: {outputPath} {Environment.NewLine}•  Size: {fileSizeMB:F2} MB", Color.Green);
-                    Log($"Single PDF created: {outputPath}");
                 }
                 else
                 {
@@ -167,13 +162,29 @@ namespace Automatic_PDF_Combiner
         {
             UpdateStatus("Combining into a single PDF...", Color.Blue);
             enableControls(false);
-            //All combined pahes are kept in memory untill output.save() is called.
+
+            //All combined pdfs are kept in memory untill output.save() is called.
             PdfDocument output = new PdfDocument();
+
             int count = 0;
             lblProgressCount.Visible = true;
+            const int MB = 1024 * 1024;
 
             foreach (string file in pdfFiles)
             {
+                if (cancelRequested)
+                {
+                    //clean the RAM
+                    output.Close();
+                    output = null;
+                    GC.Collect();
+
+                    resetControls();
+                    enableControls(true);
+                    UpdateStatus("Combing canceled by user", Color.Orange);
+                    Log("Combing canceled by user");
+                    return null;
+                }
                 PdfDocument input = PdfReader.Open(file, PdfDocumentOpenMode.Import);
                 foreach (PdfPage page in input.Pages)
                 {
@@ -189,6 +200,18 @@ namespace Automatic_PDF_Combiner
                 Application.DoEvents();
             }
             enableControls(true);
+            string outputPath = ShowSaveFileDialog();
+            //check this
+            if (outputPath == null) return null;
+            //save it on the disk 
+            output.Save(outputPath);
+            //release the RAM 
+            output.Close();
+            // Calculate the size of the saved PDF file
+            long fileSizeBytes = new FileInfo(outputPath).Length;
+            double fileSizeMB = (double)fileSizeBytes / MB;
+            UpdateStatus($"•  Combined PDF saved at: {outputPath} {Environment.NewLine}•  Size: {fileSizeMB:F2} MB", Color.Green);
+            Log($"Single PDF created: {outputPath}");
             return output;
         }
 
@@ -201,6 +224,7 @@ namespace Automatic_PDF_Combiner
             long currentSizeEstimate = 0;
             int part = 1;
             int count = 0;
+
             //All combined pahes are kept in memory untill output.save() is called.
             PdfDocument output = new PdfDocument();
             String exceed100ErrorMsg = "";
@@ -221,7 +245,7 @@ namespace Automatic_PDF_Combiner
                     if (output.PageCount > 0)
                         output.Close();
 
-                    exceed100ErrorMsg = $"Combining stopped: This folder contains a file exceeding the {sizeLimitMB} MB Limit .{Environment.NewLine}{Environment.NewLine}" +
+                    exceed100ErrorMsg = $"Combining stopped: This folder contains a file exceeding the {sizeLimitMB} MB Limit.{Environment.NewLine}{Environment.NewLine}" +
                                         $"File name: \"{Path.GetFileName(file)}\"{Environment.NewLine}" +
                                         $"File size: {fileSize / MB} MB.{Environment.NewLine}{Environment.NewLine}" +
                                         $"The 'Max of {sizeLimitMB} MB' option is is applicable only to files smaller than {sizeLimitMB} MB.{Environment.NewLine}" +
@@ -237,6 +261,24 @@ namespace Automatic_PDF_Combiner
             //Combine and save in parts
             foreach (string file in pdfFiles)
             {
+                if (cancelRequested) {
+                    //clean the RAM
+                    output.Close();
+                    output.Close();
+                    output = null;
+                    GC.Collect();
+                    if (Directory.Exists(combinedFolder)) {
+                        //delete the entire folder with parts files 
+                        Directory.Delete(combinedFolder,true);
+                    }
+                    resetControls();
+                    enableControls(true);
+                    UpdateStatus("Combing canceled by user", Color.Orange);
+                    Log("Combing canceled by user");
+                    return;
+
+                }
+
                 long fileSize = new FileInfo(file).Length;
 
                 if (currentSizeEstimate + fileSize > maxSizeBytes && output.PageCount > 0)
@@ -314,6 +356,8 @@ namespace Automatic_PDF_Combiner
             btnCombine.Enabled = enable;
             txtFolderPath.Enabled = enable;
             combineOptionComboBox.Enabled = enable;
+            cancelBtn.Enabled = !enable;
+            btnCombine.BackColor = enable ? Color.Honeydew : Color.LightGray;
         }
 
         // Resets various UI controls to their default state
@@ -348,10 +392,12 @@ namespace Automatic_PDF_Combiner
                 Log("failed to delete partial files after stopping combing " + ex.Message);
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        // Canvel combing PDFS.
+        private void cancelBtn_Click(object sender, EventArgs e)
         {
-
+            cancelRequested = true;
+            UpdateStatus("Canceling process...", Color.Orange);
+            Log("Cancel requested by user");
         }
     }
 }
