@@ -25,8 +25,12 @@ This tool combines multiple PDF files into a single or multiple PDFs effortlessl
 -	No updates are required. 
 -	Target Runtime: win-x64 (Can be changed). 
 -	Changes to the code requires publishing new EXE. 
--	Final EXE size: 148 MB.
+-	Final EXE size: 149 MB.
+-	Enabling "Ready to Run Compilation" increases the file size to 167 MB.
+    -	The "Ready to Run" option precompiles the application's assemblies into native machine code at publish time, rather than relying on the Just-In-Time compiler to compile them at runtime. As a result, it reduces the tool's startup time by 1-2 seconds, albeit at the cost of a larger file size.
+    -	The 1-2 second reduction in startup time will be most noticeable during the first launch.
 
+ 
 **CPU**
 -	Light usage, single-threaded.
 
