@@ -18,13 +18,13 @@ namespace Automatic_PDF_Combiner
         private string logFilePath = "log.txt";
         // Global vars
         bool cancelRequested = false;
-        string currentOutputFolder = "";
-
+   
         public Form1()
         {
             InitializeComponent();
 
-            string howToUseTheToolMessage = "1. Select folder contain PDFs.\n" +
+            string howToUseTheToolMessage = "This tool is a quick solution for combing PDFs into one file or several size-limited files.\n\n" +
+                "1. Select folder contain PDFs.\n" +
                 "2. Select Combine Option:\n" +
                 "\ta. Single PDF: Combine PDfs into one file. \n " +
                 "\tb. Max of 100 MB: \n" +
