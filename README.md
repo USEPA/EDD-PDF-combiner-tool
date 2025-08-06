@@ -10,19 +10,19 @@ This tool combines multiple PDF files into a single or multiple PDFs effortlessl
 **Usage Workflow**
 1.	Select folder contain PDFs
 2.	Choose Combine Option:
-    a.	Single PDF: Combine PDs into one file.
-    b.	Max of 100 MB: Combine into multiple files (parts), each not exceeding the 100 MB size limit. Parts are saved in a new folder within the selected location. This option is useful for sending PDFs via email.
-3.	Click Strat Combining.
-4.	Cancel the combining at any time.
-5.	View progress and final status in the app. 
+    - Single PDF: Combine PDs into one file.
+    - Max of 100 MB: Combine into multiple files (parts), each not exceeding the 100 MB size limit. Parts are saved in a new folder within the selected location. This option is useful for sending PDFs via email.
+4.	Click Strat Combining.
+5.	Cancel the combining at any time.
+6.	View progress and final status in the app. 
 
 **Build and Deployment**
 -	Built using C# (.Net WinForms)
 -	.Net Framework (8.0): Long-term support (LTS) release of the .NET platform
 -	Target OS version: 10.0.17763.0 (Can be changed).
 -	Supported OS version: The minimum OS version that the project will run on is 7.0 (Can be changed).
--	Published as self-contained Single EXE. All dependencies are contained in the EXE. dependencies used: 
-        o PDFSharp 
+-	Published as self-contained Single EXE. All dependencies are contained in the EXE. dependencies used:
+    -	PDFSharp 
 -	No updates are required. 
 -	Target Runtime: win-x64 (Can be changed). 
 -	Changes to the code requires publishing new EXE. 
