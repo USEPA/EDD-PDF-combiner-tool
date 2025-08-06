@@ -356,7 +356,7 @@ namespace Automatic_PDF_Combiner
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
             SizeGripStyle = SizeGripStyle.Show;
-            Text = "Auto PDFs Combiner";
+            Text = "Auto PDF Combiner";
             TransparencyKey = SystemColors.ActiveBorder;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
