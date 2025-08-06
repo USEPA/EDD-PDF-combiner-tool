@@ -29,10 +29,10 @@ b.	Max of 100 MB: Combine into multiple files (parts), each not exceeding the 10
 **CPU**
 -	Light usage, single-threaded.
 
-**RAM usage **
+**RAM usage**
 -	PDFDocument object holds the Combined PDF in Ram during the combining process.
 -	Once saved to the disk the in-memory object is cleared and released.  
 
-**Security **
+**Security**
 -	Entire process is local, no network transfers.
 -	No leftover temporary files. 
