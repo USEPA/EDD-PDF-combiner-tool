@@ -19,7 +19,6 @@ This tool combines multiple PDF files into a single or multiple PDFs effortlessl
 **Build and Deployment**
 -	Built using C# (.Net WinForms)
 -	.Net Framework (8.0): Long-term support (LTS) release of the .NET platform
--	Target OS version: 10.0.17763.0 (Can be changed).
 -	Supported OS version: The minimum OS version that the project will run on is 7.0 (Can be changed).
 -	Published as self-contained Single EXE. All dependencies are contained in the EXE. dependencies used:
     -	PDFSharp 
