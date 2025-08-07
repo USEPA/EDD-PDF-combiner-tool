@@ -160,6 +160,14 @@ namespace Automatic_PDF_Combiner
         // Combines multiple PDFs into a single PDF document
         private PdfDocument CombineIntoSinglePdf(string[] pdfFiles)
         {
+        
+            // if only one PDF file exisits in this folder exist and show error message 
+            if (pdfFiles.Length == 1)
+            {
+                resetControls();
+                UpdateStatus("Only one PDF file exists in this folder, please select a folder that contains at least 2 PDF files.", Color.Red);
+                return null;
+            }
             UpdateStatus("Combining into a single PDF...", Color.Blue);
             enableControls(false);
 
@@ -218,13 +226,21 @@ namespace Automatic_PDF_Combiner
         // Combines multiple PDFs into parts, each part is Max of 100 MB. This methid ensure that one document is not splitted and is combine as a whole to the parts 
         private void CombineWithSizeLimit(string[] pdfFiles, int sizeLimitMB, string folderPath)
         {
-            enableControls(false);
             const int MB = 1024 * 1024;
             long maxSizeBytes = sizeLimitMB * MB;
             long currentSizeEstimate = 0;
             int part = 1;
             int count = 0;
 
+            // if only one PDF file exisits in this folder exist and show error message 
+            if (pdfFiles.Length == 1)
+            {
+                resetControls();
+                UpdateStatus("Only one PDF file exists in this folder, please select a folder that contains at least 2 PDF files.", Color.Red);
+                return;
+            }
+
+            enableControls(false);
             //All combined pahes are kept in memory untill output.save() is called.
             PdfDocument output = new PdfDocument();
             String exceed100ErrorMsg = "";
