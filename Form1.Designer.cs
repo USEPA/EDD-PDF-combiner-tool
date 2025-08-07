@@ -192,7 +192,7 @@ namespace Automatic_PDF_Combiner
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(2, 579);
+            pictureBox1.Location = new Point(8, 581);
             pictureBox1.Margin = new Padding(4, 3, 4, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(34, 40);
@@ -205,7 +205,7 @@ namespace Automatic_PDF_Combiner
             label2.BackColor = Color.Transparent;
             label2.FlatStyle = FlatStyle.System;
             label2.ForeColor = SystemColors.ControlDark;
-            label2.Location = new Point(19, 579);
+            label2.Location = new Point(26, 581);
             label2.Margin = new Padding(0, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(256, 15);
@@ -215,10 +215,10 @@ namespace Automatic_PDF_Combiner
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(663, 2);
+            pictureBox2.Location = new Point(658, 12);
             pictureBox2.Margin = new Padding(4, 3, 4, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(145, 58);
+            pictureBox2.Size = new Size(115, 34);
             pictureBox2.TabIndex = 12;
             pictureBox2.TabStop = false;
             // 
@@ -352,8 +352,10 @@ namespace Automatic_PDF_Combiner
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(groupBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
             Name = "Form1";
             SizeGripStyle = SizeGripStyle.Show;
             Text = "Auto PDF Combiner";
