@@ -370,28 +370,6 @@ namespace Automatic_PDF_Combiner
             progressBar.Value = 0;
         }
 
-        // Not fully implemented yet.This method is for the cancel button
-        private void deletePartialFiles(string folderPath, List<int> partsList)
-        {
-            try
-            {
-                foreach (var part in partsList)
-                {
-                    foreach (var file in Directory.GetFiles(folderPath, $"Combined_Part{part}.pdf"))
-                    {
-
-                        //    file.delte    Delete(file);
-
-                    }
-                    Log("deleted partial files after stopping combing");
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Log("failed to delete partial files after stopping combing " + ex.Message);
-            }
-        }
         // Canvel combing PDFS.
         private void cancelBtn_Click(object sender, EventArgs e)
         {
