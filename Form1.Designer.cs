@@ -70,10 +70,10 @@ namespace Automatic_PDF_Combiner
             btnBrowse.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
             btnBrowse.FlatStyle = FlatStyle.Flat;
             btnBrowse.Image = (Image)resources.GetObject("btnBrowse.Image");
-            btnBrowse.Location = new Point(681, 51);
+            btnBrowse.Location = new Point(681, 57);
             btnBrowse.Margin = new Padding(4, 3, 4, 3);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(37, 33);
+            btnBrowse.Size = new Size(37, 28);
             btnBrowse.TabIndex = 0;
             helpTextToolTip.SetToolTip(btnBrowse, "Browse for a folder containing PDFs");
             btnBrowse.UseVisualStyleBackColor = false;
