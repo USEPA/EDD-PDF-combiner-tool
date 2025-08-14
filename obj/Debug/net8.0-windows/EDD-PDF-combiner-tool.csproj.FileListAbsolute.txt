@@ -1,6 +1,0 @@
-D:\Users\DJamous\source\repos\EDD-PDF-combiner-tool\obj\Debug\net8.0-windows\Automatic_PDF_Combiner.Form1.resources
-D:\Users\DJamous\source\repos\EDD-PDF-combiner-tool\obj\Debug\net8.0-windows\EDD-PDF-combiner-tool.csproj.GenerateResource.cache
-D:\Users\DJamous\source\repos\EDD-PDF-combiner-tool\obj\Debug\net8.0-windows\EDD-PDF-combiner-tool.GeneratedMSBuildEditorConfig.editorconfig
-D:\Users\DJamous\source\repos\EDD-PDF-combiner-tool\obj\Debug\net8.0-windows\EDD-PDF-combiner-tool.AssemblyInfoInputs.cache
-D:\Users\DJamous\source\repos\EDD-PDF-combiner-tool\obj\Debug\net8.0-windows\EDD-PDF-combiner-tool.AssemblyInfo.cs
-D:\Users\DJamous\source\repos\EDD-PDF-combiner-tool\obj\Debug\net8.0-windows\EDD-PDF-combiner-tool.csproj.CoreCompileInputs.cache
