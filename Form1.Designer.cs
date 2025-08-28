@@ -70,7 +70,7 @@ namespace Automatic_PDF_Combiner
             btnBrowse.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
             btnBrowse.FlatStyle = FlatStyle.Flat;
             btnBrowse.Image = (Image)resources.GetObject("btnBrowse.Image");
-            btnBrowse.Location = new Point(681, 57);
+            btnBrowse.Location = new Point(680, 39);
             btnBrowse.Margin = new Padding(4, 3, 4, 3);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(37, 28);
@@ -82,7 +82,7 @@ namespace Automatic_PDF_Combiner
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(22, 65);
+            label1.Location = new Point(21, 47);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(67, 15);
@@ -92,7 +92,7 @@ namespace Automatic_PDF_Combiner
             // txtFolderPath
             // 
             txtFolderPath.BackColor = SystemColors.ControlLightLight;
-            txtFolderPath.Location = new Point(125, 61);
+            txtFolderPath.Location = new Point(124, 43);
             txtFolderPath.Margin = new Padding(4, 3, 4, 3);
             txtFolderPath.Name = "txtFolderPath";
             txtFolderPath.Size = new Size(549, 23);
@@ -104,7 +104,7 @@ namespace Automatic_PDF_Combiner
             btnCombine.FlatStyle = FlatStyle.Flat;
             btnCombine.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCombine.ForeColor = SystemColors.ActiveCaptionText;
-            btnCombine.Location = new Point(125, 184);
+            btnCombine.Location = new Point(123, 181);
             btnCombine.Margin = new Padding(4, 3, 4, 3);
             btnCombine.Name = "btnCombine";
             btnCombine.Size = new Size(550, 35);
@@ -129,11 +129,11 @@ namespace Automatic_PDF_Combiner
             groupBox1.Controls.Add(txtFolderPath);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(btnBrowse);
-            groupBox1.Location = new Point(14, 90);
+            groupBox1.Location = new Point(14, 70);
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
-            groupBox1.Size = new Size(760, 225);
+            groupBox1.Size = new Size(760, 228);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Combine Settings";
@@ -145,7 +145,7 @@ namespace Automatic_PDF_Combiner
             cancelBtn.FlatAppearance.BorderSize = 0;
             cancelBtn.FlatStyle = FlatStyle.Flat;
             cancelBtn.Image = (Image)resources.GetObject("cancelBtn.Image");
-            cancelBtn.Location = new Point(683, 184);
+            cancelBtn.Location = new Point(682, 181);
             cancelBtn.Name = "cancelBtn";
             cancelBtn.Size = new Size(35, 35);
             cancelBtn.TabIndex = 7;
@@ -157,7 +157,7 @@ namespace Automatic_PDF_Combiner
             // 
             combineOptionInfoLbl.AutoSize = true;
             combineOptionInfoLbl.ForeColor = SystemColors.ControlDarkDark;
-            combineOptionInfoLbl.Location = new Point(121, 120);
+            combineOptionInfoLbl.Location = new Point(120, 102);
             combineOptionInfoLbl.Margin = new Padding(4, 0, 4, 0);
             combineOptionInfoLbl.Name = "combineOptionInfoLbl";
             combineOptionInfoLbl.Size = new Size(128, 15);
@@ -170,7 +170,7 @@ namespace Automatic_PDF_Combiner
             label5.AutoEllipsis = true;
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Location = new Point(22, 92);
+            label5.Location = new Point(21, 74);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(96, 15);
@@ -181,7 +181,7 @@ namespace Automatic_PDF_Combiner
             // 
             combineOptionComboBox.FormattingEnabled = true;
             combineOptionComboBox.Items.AddRange(new object[] { "Single PDF", "Max of 100 MB" });
-            combineOptionComboBox.Location = new Point(125, 92);
+            combineOptionComboBox.Location = new Point(124, 74);
             combineOptionComboBox.Margin = new Padding(4, 3, 4, 3);
             combineOptionComboBox.Name = "combineOptionComboBox";
             combineOptionComboBox.Size = new Size(549, 23);
@@ -192,7 +192,7 @@ namespace Automatic_PDF_Combiner
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(8, 581);
+            pictureBox1.Location = new Point(7, 573);
             pictureBox1.Margin = new Padding(4, 3, 4, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(34, 40);
@@ -205,7 +205,7 @@ namespace Automatic_PDF_Combiner
             label2.BackColor = Color.Transparent;
             label2.FlatStyle = FlatStyle.System;
             label2.ForeColor = SystemColors.ControlDark;
-            label2.Location = new Point(26, 581);
+            label2.Location = new Point(25, 573);
             label2.Margin = new Padding(0, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(256, 15);
@@ -215,16 +215,16 @@ namespace Automatic_PDF_Combiner
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(658, 12);
+            pictureBox2.Location = new Point(567, 1);
             pictureBox2.Margin = new Padding(4, 3, 4, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(115, 34);
+            pictureBox2.Size = new Size(218, 72);
             pictureBox2.TabIndex = 12;
             pictureBox2.TabStop = false;
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(123, 186);
+            progressBar.Location = new Point(123, 194);
             progressBar.Margin = new Padding(4, 3, 4, 3);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(550, 22);
@@ -236,7 +236,7 @@ namespace Automatic_PDF_Combiner
             lblProgressCount.AutoSize = true;
             lblProgressCount.BackColor = SystemColors.ButtonHighlight;
             lblProgressCount.FlatStyle = FlatStyle.Flat;
-            lblProgressCount.Location = new Point(120, 211);
+            lblProgressCount.Location = new Point(120, 219);
             lblProgressCount.Margin = new Padding(4, 0, 4, 0);
             lblProgressCount.Name = "lblProgressCount";
             lblProgressCount.Size = new Size(37, 15);
@@ -247,7 +247,7 @@ namespace Automatic_PDF_Combiner
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 43);
+            label3.Location = new Point(20, 51);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(42, 15);
@@ -262,11 +262,11 @@ namespace Automatic_PDF_Combiner
             groupBox2.Controls.Add(lblProgressCount);
             groupBox2.Controls.Add(progressBar);
             groupBox2.Controls.Add(label3);
-            groupBox2.Location = new Point(16, 321);
+            groupBox2.Location = new Point(14, 304);
             groupBox2.Margin = new Padding(4, 3, 4, 3);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4, 3, 4, 3);
-            groupBox2.Size = new Size(757, 244);
+            groupBox2.Size = new Size(757, 256);
             groupBox2.TabIndex = 16;
             groupBox2.TabStop = false;
             groupBox2.Text = "Progress Status";
@@ -274,7 +274,7 @@ namespace Automatic_PDF_Combiner
             // fileNameLbl
             // 
             fileNameLbl.AutoSize = true;
-            fileNameLbl.Location = new Point(120, 226);
+            fileNameLbl.Location = new Point(120, 234);
             fileNameLbl.Margin = new Padding(4, 0, 4, 0);
             fileNameLbl.Name = "fileNameLbl";
             fileNameLbl.Size = new Size(55, 15);
@@ -285,7 +285,7 @@ namespace Automatic_PDF_Combiner
             // statusTextBox
             // 
             statusTextBox.BackColor = SystemColors.ButtonHighlight;
-            statusTextBox.Location = new Point(122, 43);
+            statusTextBox.Location = new Point(121, 30);
             statusTextBox.Margin = new Padding(4, 3, 4, 3);
             statusTextBox.Multiline = true;
             statusTextBox.Name = "statusTextBox";
@@ -298,7 +298,7 @@ namespace Automatic_PDF_Combiner
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 186);
+            label4.Location = new Point(21, 194);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(55, 15);
@@ -307,17 +307,15 @@ namespace Automatic_PDF_Combiner
             // 
             // helpIconToolTip
             // 
-            helpIconToolTip.AutoPopDelay = 1200000;
+            helpIconToolTip.AutomaticDelay = 1000;
             helpIconToolTip.BackColor = SystemColors.InfoText;
-            helpIconToolTip.InitialDelay = 500;
-            helpIconToolTip.ReshowDelay = 100;
             helpIconToolTip.ShowAlways = true;
             helpIconToolTip.UseAnimation = false;
             // 
             // toolTip
             // 
             toolTip.Image = (Image)resources.GetObject("toolTip.Image");
-            toolTip.Location = new Point(12, 44);
+            toolTip.Location = new Point(10, 16);
             toolTip.Name = "toolTip";
             toolTip.Size = new Size(24, 25);
             toolTip.TabIndex = 17;
@@ -326,7 +324,7 @@ namespace Automatic_PDF_Combiner
             // toolTipLbl
             // 
             toolTipLbl.AutoSize = true;
-            toolTipLbl.Location = new Point(36, 49);
+            toolTipLbl.Location = new Point(34, 21);
             toolTipLbl.Name = "toolTipLbl";
             toolTipLbl.Size = new Size(86, 15);
             toolTipLbl.TabIndex = 18;
@@ -344,7 +342,7 @@ namespace Automatic_PDF_Combiner
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HighlightText;
-            ClientSize = new Size(788, 605);
+            ClientSize = new Size(789, 592);
             Controls.Add(toolTipLbl);
             Controls.Add(toolTip);
             Controls.Add(groupBox2);

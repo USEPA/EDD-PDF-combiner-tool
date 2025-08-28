@@ -1,14 +1,13 @@
 ﻿
 using PdfSharp.Pdf;
+using PdfSharp.Pdf.Filters;
 using PdfSharp.Pdf.IO;
 using System.Drawing.Text;
 
 /* ---------------------------- 
 Created by: Dana Jamous 7/22/2025
-Operations & Information Analysis Branch (OIAB)
-eDiscovery Division (EDD)
-Office of Records, Administrative Systems & eDiscovery (ORASE)
-Office of Mission Support (OMS)
+eDiscovery Branch
+Office of Finance and Administration.
 ------------------------------*/
 
 namespace Automatic_PDF_Combiner
@@ -23,16 +22,19 @@ namespace Automatic_PDF_Combiner
         {
             InitializeComponent();
 
-            string howToUseTheToolMessage = "This tool is a quick solution for combing PDFs into one file or several size-limited files.\n\n" +
-                "1. Select folder contain PDFs.\n" +
-                "2. Select Combine Option:\n" +
-                "\ta. Single PDF: Combine PDfs into one file. \n " +
-                "\tb. Max of 100 MB: \n" +
-                "\t    - Combine into multiple files (parts), each not exceeding the 100 MB size limit.\n" +
-                "\t    - Parts are saved in a new folder within the selected location.\n" +
-                "\t    - This option is useful for sending PDFs via email.\n" +
+            string howToUseTheToolMessage = "This tool combines multiple PDFs into one PDF file or several size-limited PDF files.\n\n" +
+                "1. Select the folder containing the PDFs you want to combine.\n" +
+                "\t    - PDFs in subfolders will not be included.\n" +
+                "2. Select Combine Option.\n" +
+                "\ta. Single PDF: Combines multiple PDFs into one PDF.  \n " +
+                "\tb. Max of 100 MB per combined PDF (useful for emailing PDFs):  \n" +
+                "\t    - Combines multiple PDFs into one PDF up to a 100 MB size limit.\n" +
+                "\t    - If exceeded, additional combined PDFs are created (PDF names will be suffixed with _Part#).\n" +
+                "\t    - No files are split across the combined PDF parts.\n" +
                 "3. Click Start Combining.\n" +
-                "4. View progress and final status in the app.";
+                "4. View progress and final status in the app.\n"+
+                "5.Combined PDFs are saved in a new folder in the selected location.";
+
 
             helpIconToolTip.SetToolTip(toolTip, howToUseTheToolMessage);
             helpTextToolTip.SetToolTip(toolTipLbl, howToUseTheToolMessage);
@@ -344,7 +346,6 @@ namespace Automatic_PDF_Combiner
         // // Handles the event when the user selects a different option from the combineOptionComboBox and show hint accordingly 
         private void combineOptionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             combineOptionInfoLbl.Visible = true;
             resetControls();
             string selectedOption = combineOptionComboBox.SelectedItem.ToString();
@@ -357,7 +358,7 @@ namespace Automatic_PDF_Combiner
 
                     break;
                 case "Max of 100 MB":
-                    combineOptionInfoLbl.Text = $"Combine into multiple files (parts), each not exceeding the 100 MB size limit. \nParts are saved in a new folder within the selected folder.\nThis option is useful for sending combined PDFs via email.";
+                    combineOptionInfoLbl.Text = $"- Combines multiple PDFs into one PDF up to a 100 MB size limit. \n- If exceeded, additional combined PDFs are created (PDF names will be suffixed with _Part#).\n- No files are split across the combined PDF parts.\n- This option is useful for emailing PDFs. \n ";
                     break;
                 default:
 
@@ -379,7 +380,7 @@ namespace Automatic_PDF_Combiner
         // Resets various UI controls to their default state
         private void resetControls()
         {
-            combineOptionInfoLbl.Text = "";
+            //combineOptionInfoLbl.Text = "";
             fileNameLbl.Text = "";
             lblProgressCount.Text = "";
             statusTextBox.Text = "";
