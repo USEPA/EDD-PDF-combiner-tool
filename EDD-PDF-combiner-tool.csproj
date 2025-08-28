@@ -7,13 +7,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>pdf 4 (1).ico</ApplicationIcon>
+    <ApplicationIcon>PDFCombiner2.ico</ApplicationIcon>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <AssemblyName>Auto PDF Combiner</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="pdf 4 (1).ico" />
+    <Content Include="PDFCombiner2.ico" />
   </ItemGroup>
 
   <ItemGroup>
