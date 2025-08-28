@@ -5,8 +5,9 @@ using PdfSharp.Pdf.IO;
 using System.Drawing.Text;
 
 /* ---------------------------- 
-Created by: Dana Jamous 7/22/2025
-eDiscovery Branch
+Created by: Dana Jamous July, 2025
+eDiscovery Branch.
+Data Enterprise Program Division.
 Office of Finance and Administration.
 ------------------------------*/
 
