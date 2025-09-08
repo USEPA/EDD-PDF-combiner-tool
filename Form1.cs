@@ -15,7 +15,9 @@ namespace Automatic_PDF_Combiner
 {
     public partial class Form1 : Form
     {
-        private string logFilePath = "log.txt";
+        // This is disbaled for now
+        //private string logFilePath = "log.txt";
+        
         // Global vars
         bool cancelRequested = false;
    
@@ -52,7 +54,7 @@ namespace Automatic_PDF_Combiner
                 {
                     txtFolderPath.Text = dialog.SelectedPath;
                     UpdateStatus("Folder selected", Color.Green);
-                    Log("Folder selected: " + dialog.SelectedPath);
+                    //Log("Folder selected: " + dialog.SelectedPath);
                 }
             }
         }
@@ -66,7 +68,7 @@ namespace Automatic_PDF_Combiner
             if (!Directory.Exists(folderPath))
             {
                 UpdateStatus("Please select a valid folder.", Color.Red);
-                Log("Invalid folder selected.");
+                //Log("Invalid folder selected.");
                 return;
             }
 
@@ -74,7 +76,7 @@ namespace Automatic_PDF_Combiner
             if (pdfFiles.Length == 0)
             {
                 UpdateStatus("No PDF files found.", Color.Red);
-                Log("No PDF files found.");
+                //Log("No PDF files found.");
                 return;
             }
 
@@ -84,7 +86,7 @@ namespace Automatic_PDF_Combiner
             if (string.IsNullOrEmpty(option))
             {
                 UpdateStatus("Please select an option from the dropdown.", Color.Red);
-                Log("Merge option not selected.");
+                //Log("Merge option not selected.");
                 return;
             }
 
@@ -103,12 +105,13 @@ namespace Automatic_PDF_Combiner
             catch (Exception ex)
             {
                 UpdateStatus("Error: " + ex.Message, Color.Red);
-                Log("Error: " + ex.Message);
+               //Log("Error: " + ex.Message);
             }
         }
 
+        // This method is disabled for now 
         // Logs messages to a log file with timestamp
-        private void Log(string message)
+          /*  private void Log(string message)
         {
             try
             {
@@ -122,7 +125,7 @@ namespace Automatic_PDF_Combiner
                 MessageBox.Show("Failed to write to log file: " + ex.Message);
             }
         }
-
+      */
         // Updates the status message displayed to the user
         private void UpdateStatus(string message, Color color)
         {
@@ -145,7 +148,7 @@ namespace Automatic_PDF_Combiner
             if (saveDialog.ShowDialog() != DialogResult.OK)
             {
                 UpdateStatus("Combining canceled.", Color.Red);
-                Log("User canceled combining.");
+                //Log("User canceled combining.");
                 return null;
             }
 
@@ -193,7 +196,7 @@ namespace Automatic_PDF_Combiner
                     resetControls();
                     enableControls(true);
                     UpdateStatus("Combing canceled by user", Color.Orange);
-                    Log("Combing canceled by user");
+                    //Log("Combing canceled by user");
                     return null;
                 }
                 PdfDocument input = PdfReader.Open(file, PdfDocumentOpenMode.Import);
@@ -222,7 +225,7 @@ namespace Automatic_PDF_Combiner
             long fileSizeBytes = new FileInfo(outputPath).Length;
             double fileSizeMB = (double)fileSizeBytes / MB;
             UpdateStatus($"•  Combined PDF saved at: {outputPath} {Environment.NewLine}•  Size: {fileSizeMB:F2} MB", Color.Green);
-            Log($"Single PDF created: {outputPath}");
+            //Log($"Single PDF created: {outputPath}");
             return output;
         }
 
@@ -271,7 +274,7 @@ namespace Automatic_PDF_Combiner
                                         $"To proceed, please remove the oversized file from the folder and try combining again";
                     MessageBox.Show(exceed100ErrorMsg, "File too large", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     UpdateStatus(exceed100ErrorMsg, Color.Red);
-                    Log(exceed100ErrorMsg);
+                    //Log(exceed100ErrorMsg);
                     enableControls(true);
                     return;
                 }
@@ -293,7 +296,7 @@ namespace Automatic_PDF_Combiner
                     resetControls();
                     enableControls(true);
                     UpdateStatus("Combing canceled by user", Color.Orange);
-                    Log("Combing canceled by user");
+                    //Log("Combing canceled by user");
                     return;
 
                 }
@@ -308,7 +311,7 @@ namespace Automatic_PDF_Combiner
                     //release the RAM 
                     output.Close();
                     UpdateStatus($"•  Part ({part}) Saved: {partFile} {Environment.NewLine}•  Size: {currentSizeEstimate / MB} MB {Environment.NewLine}{Environment.NewLine} Continue combining...", Color.Blue);
-                    Log($"Saved part {part}: {partFile} (Estimated size: {currentSizeEstimate / MB} MB)");
+                    //Log($"Saved part {part}: {partFile} (Estimated size: {currentSizeEstimate / MB} MB)");
 
                     part++;
                     output = new PdfDocument();
@@ -337,7 +340,7 @@ namespace Automatic_PDF_Combiner
                 string partFile = Path.Combine(combinedFolder, $"Combined_Part{part}.pdf");
                 output.Save(partFile);
                 output.Close();
-                Log($"Saved final part {part}: {partFile}");
+                //Log($"Saved final part {part}: {partFile}");
             }
 
             enableControls(true);
@@ -393,7 +396,7 @@ namespace Automatic_PDF_Combiner
         {
             cancelRequested = true;
             UpdateStatus("Canceling process...", Color.Orange);
-            Log("Cancel requested by user");
+            //Log("Cancel requested by user");
         }
     }
 }
