@@ -15,9 +15,6 @@ namespace Automatic_PDF_Combiner
 {
     public partial class Form1 : Form
     {
-        // This is disbaled for now
-        //private string logFilePath = "log.txt";
-        
         // Global vars
         bool cancelRequested = false;
    
@@ -54,7 +51,6 @@ namespace Automatic_PDF_Combiner
                 {
                     txtFolderPath.Text = dialog.SelectedPath;
                     UpdateStatus("Folder selected", Color.Green);
-                    //Log("Folder selected: " + dialog.SelectedPath);
                 }
             }
         }
@@ -62,13 +58,11 @@ namespace Automatic_PDF_Combiner
         // Handles the combine button click to combine PDF files based on selected option
         private void btnCombine_Click(object sender, EventArgs e)
         {
-            //reset cancel requested
             cancelRequested = false;
             string folderPath = txtFolderPath.Text;
             if (!Directory.Exists(folderPath))
             {
                 UpdateStatus("Please select a valid folder.", Color.Red);
-                //Log("Invalid folder selected.");
                 return;
             }
 
@@ -76,7 +70,6 @@ namespace Automatic_PDF_Combiner
             if (pdfFiles.Length == 0)
             {
                 UpdateStatus("No PDF files found.", Color.Red);
-                //Log("No PDF files found.");
                 return;
             }
 
@@ -86,7 +79,6 @@ namespace Automatic_PDF_Combiner
             if (string.IsNullOrEmpty(option))
             {
                 UpdateStatus("Please select an option from the dropdown.", Color.Red);
-                //Log("Merge option not selected.");
                 return;
             }
 
@@ -105,27 +97,9 @@ namespace Automatic_PDF_Combiner
             catch (Exception ex)
             {
                 UpdateStatus("Error: " + ex.Message, Color.Red);
-               //Log("Error: " + ex.Message);
             }
         }
 
-        // This method is disabled for now 
-        // Logs messages to a log file with timestamp
-          /*  private void Log(string message)
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter(logFilePath, true))
-                {
-                    writer.WriteLine($"{DateTime.Now}: {message}");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to write to log file: " + ex.Message);
-            }
-        }
-      */
         // Updates the status message displayed to the user
         private void UpdateStatus(string message, Color color)
         {
@@ -148,7 +122,6 @@ namespace Automatic_PDF_Combiner
             if (saveDialog.ShowDialog() != DialogResult.OK)
             {
                 UpdateStatus("Combining canceled.", Color.Red);
-                //Log("User canceled combining.");
                 return null;
             }
 
@@ -166,7 +139,6 @@ namespace Automatic_PDF_Combiner
         // Combines multiple PDFs into a single PDF document
         private PdfDocument CombineIntoSinglePdf(string[] pdfFiles)
         {
-        
             // if only one PDF file exisits in this folder exist and show error message 
             if (pdfFiles.Length == 1)
             {
@@ -177,7 +149,7 @@ namespace Automatic_PDF_Combiner
             UpdateStatus("Combining into a single PDF...", Color.Blue);
             enableControls(false);
 
-            //All combined pdfs are kept in memory untill output.save() is called.
+            
             PdfDocument output = new PdfDocument();
 
             int count = 0;
@@ -188,7 +160,6 @@ namespace Automatic_PDF_Combiner
             {
                 if (cancelRequested)
                 {
-                    //clean the RAM
                     output.Close();
                     output = null;
                     GC.Collect();
@@ -196,7 +167,6 @@ namespace Automatic_PDF_Combiner
                     resetControls();
                     enableControls(true);
                     UpdateStatus("Combing canceled by user", Color.Orange);
-                    //Log("Combing canceled by user");
                     return null;
                 }
                 PdfDocument input = PdfReader.Open(file, PdfDocumentOpenMode.Import);
@@ -215,17 +185,14 @@ namespace Automatic_PDF_Combiner
             }
             enableControls(true);
             string outputPath = ShowSaveFileDialog();
-            //check this
+      
             if (outputPath == null) return null;
-            //save it on the disk 
             output.Save(outputPath);
-            //release the RAM 
             output.Close();
-            // Calculate the size of the saved PDF file
+       
             long fileSizeBytes = new FileInfo(outputPath).Length;
             double fileSizeMB = (double)fileSizeBytes / MB;
             UpdateStatus($"•  Combined PDF saved at: {outputPath} {Environment.NewLine}•  Size: {fileSizeMB:F2} MB", Color.Green);
-            //Log($"Single PDF created: {outputPath}");
             return output;
         }
 
@@ -247,7 +214,6 @@ namespace Automatic_PDF_Combiner
             }
 
             enableControls(false);
-            //All combined pahes are kept in memory untill output.save() is called.
             PdfDocument output = new PdfDocument();
             String exceed100ErrorMsg = "";
             fileNameLbl.Visible = true;
@@ -274,7 +240,6 @@ namespace Automatic_PDF_Combiner
                                         $"To proceed, please remove the oversized file from the folder and try combining again";
                     MessageBox.Show(exceed100ErrorMsg, "File too large", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     UpdateStatus(exceed100ErrorMsg, Color.Red);
-                    //Log(exceed100ErrorMsg);
                     enableControls(true);
                     return;
                 }
@@ -296,7 +261,6 @@ namespace Automatic_PDF_Combiner
                     resetControls();
                     enableControls(true);
                     UpdateStatus("Combing canceled by user", Color.Orange);
-                    //Log("Combing canceled by user");
                     return;
 
                 }
@@ -306,13 +270,10 @@ namespace Automatic_PDF_Combiner
                 if (currentSizeEstimate + fileSize > maxSizeBytes && output.PageCount > 0)
                 {
                     string partFile = Path.Combine(combinedFolder, $"Combined_Part{part}.pdf");
-                    //save it on the disk 
                     output.Save(partFile);
-                    //release the RAM 
                     output.Close();
                     UpdateStatus($"•  Part ({part}) Saved: {partFile} {Environment.NewLine}•  Size: {currentSizeEstimate / MB} MB {Environment.NewLine}{Environment.NewLine} Continue combining...", Color.Blue);
-                    //Log($"Saved part {part}: {partFile} (Estimated size: {currentSizeEstimate / MB} MB)");
-
+                  
                     part++;
                     output = new PdfDocument();
                     currentSizeEstimate = 0;
@@ -340,7 +301,6 @@ namespace Automatic_PDF_Combiner
                 string partFile = Path.Combine(combinedFolder, $"Combined_Part{part}.pdf");
                 output.Save(partFile);
                 output.Close();
-                //Log($"Saved final part {part}: {partFile}");
             }
 
             enableControls(true);
@@ -354,7 +314,6 @@ namespace Automatic_PDF_Combiner
             resetControls();
             string selectedOption = combineOptionComboBox.SelectedItem.ToString();
 
-            // Perform actions based on the selected item
             switch (selectedOption)
             {
                 case "Single PDF":
@@ -391,12 +350,11 @@ namespace Automatic_PDF_Combiner
             progressBar.Value = 0;
         }
 
-        // Canvel combing PDFS.
+        // Cancel combing PDFS.
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             cancelRequested = true;
             UpdateStatus("Canceling process...", Color.Orange);
-            //Log("Cancel requested by user");
         }
     }
 }
