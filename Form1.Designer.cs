@@ -215,7 +215,7 @@ namespace Automatic_PDF_Combiner
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(567, 1);
+            pictureBox2.Location = new Point(558, 2);
             pictureBox2.Margin = new Padding(4, 3, 4, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(218, 72);
