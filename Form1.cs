@@ -5,10 +5,8 @@ using PdfSharp.Pdf.IO;
 using System.Drawing.Text;
 
 /* ---------------------------- 
-Created by: Dana Jamous July, 2025
-eDiscovery Branch.
-Data Enterprise Program Division.
-Office of Finance and Administration.
+Created by: Dana Jamous
+Office of Mission Support
 ------------------------------*/
 
 namespace Automatic_PDF_Combiner
