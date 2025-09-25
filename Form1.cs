@@ -1,8 +1,6 @@
 ﻿
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.Filters;
 using PdfSharp.Pdf.IO;
-using System.Drawing.Text;
 
 /* ---------------------------- 
 Created by: Dana Jamous
@@ -38,7 +36,7 @@ namespace Automatic_PDF_Combiner
             helpTextToolTip.SetToolTip(toolTipLbl, howToUseTheToolMessage);
         }
 
-        // Handles the browse button click to select a folder containing PDF files
+        // Browse Button 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             using (var dialog = new FolderBrowserDialog())
@@ -53,7 +51,7 @@ namespace Automatic_PDF_Combiner
             }
         }
 
-        // Handles the combine button click to combine PDF files based on selected option
+        // Combine button 
         private void btnCombine_Click(object sender, EventArgs e)
         {
             cancelRequested = false;
@@ -253,7 +251,7 @@ namespace Automatic_PDF_Combiner
                     output = null;
                     GC.Collect();
                     if (Directory.Exists(combinedFolder)) {
-                        //delete the entire folder with parts files 
+                       
                         Directory.Delete(combinedFolder,true);
                     }
                     resetControls();
@@ -305,7 +303,7 @@ namespace Automatic_PDF_Combiner
             UpdateStatus($"{part} file(s) created.{Environment.NewLine}All combined parts saved in:{Environment.NewLine}{combinedFolder}", Color.Green);
         }
 
-        // // Handles the event when the user selects a different option from the combineOptionComboBox and show hint accordingly 
+        // // Handles the event when the user selects a different option from the combineOptionComboBox 
         private void combineOptionComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             combineOptionInfoLbl.Visible = true;
@@ -341,7 +339,7 @@ namespace Automatic_PDF_Combiner
         // Resets various UI controls to their default state
         private void resetControls()
         {
-            //combineOptionInfoLbl.Text = "";
+         
             fileNameLbl.Text = "";
             lblProgressCount.Text = "";
             statusTextBox.Text = "";
