@@ -5,6 +5,7 @@ using PdfSharp.Pdf.IO;
 /* ---------------------------- 
 Created by: Dana Jamous
 Office of Mission Support
+
 ------------------------------*/
 
 namespace Automatic_PDF_Combiner
